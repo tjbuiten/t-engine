@@ -1,0 +1,4 @@
+CHAR
+1
+TEXTURE
+.\\Assets\\Sprites\\Sprite1.png
