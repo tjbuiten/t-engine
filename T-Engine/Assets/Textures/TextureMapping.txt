@@ -1,4 +1,4 @@
-CHAR
-1
-TEXTURE
-.\\Assets\\Sprites\\Sprite1.png
+0;.\\Assets\\Sprites\\IsoTestVoid.png
+1;.\\Assets\\Sprites\\IsoWhiteTile.png
+@;.\\Assets\\Sprites\\Player.png
+T;.\\Assets\\Sprites\\IsoTestTree.png;64;64

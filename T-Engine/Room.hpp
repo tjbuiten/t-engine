@@ -1,13 +1,12 @@
 #pragma once
-#include "Game.hpp"
 #include <vector>
-#include <string>
+#include "Layer.hpp"
 
 class Room {
 public:
 	Room();
 	~Room();
 
-	std::vector<std::string> tiles;
+	std::vector<Layer> layers;
 private:
 };

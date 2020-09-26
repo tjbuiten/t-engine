@@ -1,4 +1,0 @@
-CHAR
-0
-TEXTURE
-.\\Assets\\Sprites\\Sprite0.png

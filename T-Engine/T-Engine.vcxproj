@@ -139,35 +139,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Levedfl.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
-    <ClCompile Include="LevelLoaderfdas.cpp" />
-    <ClCompile Include="LevelManager.cpp" />
-    <ClCompile Include="hfgddf.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mainfds.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="MapLoader.cpp" />
-    <ClCompile Include="Roewrqom.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
-    <ClCompile Include="gsdf.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TextureMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameObject.hpp" />
+    <ClInclude Include="InputManager.hpp" />
+    <ClInclude Include="Layer.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelLoader.hpp" />
-    <ClInclude Include="Levelo.hpp" />
-    <ClInclude Include="LevelManager.hpp" />
-    <ClInclude Include="Map.hpp" />
-    <ClInclude Include="Roewqrom.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="Room.hpp" />
-    <ClInclude Include="dgf.hpp" />
+    <ClInclude Include="Texture.hpp" />
     <ClInclude Include="TextureManager.hpp" />
     <ClInclude Include="TextureMap.hpp" />
   </ItemGroup>

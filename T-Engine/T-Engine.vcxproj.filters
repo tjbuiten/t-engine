@@ -13,102 +13,87 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\OldCode">
-      <UniqueIdentifier>{7d3c3c55-d4ff-4ffb-b59e-e4d27cb1551c}</UniqueIdentifier>
+    <Filter Include="Source Files\HeaderFiles">
+      <UniqueIdentifier>{fa71f1bd-1d9a-4e72-bfd9-3330053d6526}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SemiOldCode">
-      <UniqueIdentifier>{829db40e-74e7-4f33-be43-2af7d0e5cd35}</UniqueIdentifier>
+    <Filter Include="Source Files\SourceFiles">
+      <UniqueIdentifier>{537ab9c6-a668-4a47-9945-584d9cb7939e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files\OldCode</Filter>
-    </ClCompile>
-    <ClCompile Include="Mainfds.cpp">
-      <Filter>Source Files\OldCode</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelManager.cpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClCompile>
-    <ClCompile Include="MapLoader.cpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClCompile>
-    <ClCompile Include="Levedfl.cpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Roewrqom.cpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelLoaderfdas.cpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hfgddf.cpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gsdf.cpp">
-      <Filter>Source Files\OldCode</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SourceFiles</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelLoader.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMap.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Map.hpp">
-      <Filter>Source Files\OldCode</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelManager.hpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClInclude>
-    <ClInclude Include="Levelo.hpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Roewqrom.hpp">
-      <Filter>Source Files\SemiOldCode</Filter>
-    </ClInclude>
-    <ClInclude Include="Room.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelLoader.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureMap.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dgf.hpp">
-      <Filter>Source Files\OldCode</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.hpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Entity.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
     </ClInclude>
     <ClInclude Include="Game.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\HeaderFiles</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelLoader.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMap.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

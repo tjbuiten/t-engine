@@ -34,8 +34,6 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		isRunning = true;
 	}
-
-	//player = new GameObject(".\\Assets\\Sprites\\TestPlayer.png", 0, 0);
 }
 
 void Game::handleEvents() {
@@ -52,13 +50,17 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-	//player->Update();
+	SDL_RenderClear(renderer);
+
+	for (Entity* entity : entities) {
+		entity->Update();
+		entity->Render();
+	}
+
+	SDL_RenderPresent(renderer);
 }
 
 void Game::render() {
-	//SDL_RenderClear(renderer);
-	//player->Render();
-	//SDL_RenderPresent(renderer);
 }
 
 void Game::clean() {

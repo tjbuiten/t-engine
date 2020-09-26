@@ -4,10 +4,11 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
+#include <vector>
+#include "Entity.hpp"
 
 class Game {
 public:
-
 	Game();
 	~Game();
 
@@ -20,6 +21,8 @@ public:
 	bool running();
 
 	static SDL_Renderer* renderer;
+	std::vector<Entity*> entities;
+
 
 private:
 	bool isRunning;

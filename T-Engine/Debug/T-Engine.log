@@ -1,6 +1,13 @@
-﻿  TextureManager.cpp
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\TextureManager.cpp(31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\TextureManager.cpp(34): warning C4018: '<': signed/unsigned mismatch
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\TextureManager.cpp(37): warning C4018: '<': signed/unsigned mismatch
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\TextureManager.cpp(43): warning C4101: 'texture': unreferenced local variable
+﻿  GameObject.cpp
+  Level.cpp
+C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Level.cpp(20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Level.cpp(23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Level.cpp(26): warning C4018: '<': signed/unsigned mismatch
+C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Level.cpp(29): warning C4018: '<': signed/unsigned mismatch
+  LevelLoader.cpp
+  Main.cpp
+  Player.cpp
+  Room.cpp
+  TextureManager.cpp
+  Generating Code...
   T-Engine.vcxproj -> C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\Debug\T-Engine.exe

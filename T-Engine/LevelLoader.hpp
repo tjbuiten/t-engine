@@ -15,5 +15,5 @@ public:
 
 private:
 	Room LoadRoom(std::string roomDirectory);
-	std::pair<char, SDL_Texture*> LoadTexture(std::string texturesDirectory);
+	void LoadTexture(Level& level);
 };
