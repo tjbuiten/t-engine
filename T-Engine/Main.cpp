@@ -32,13 +32,12 @@ int main(int argc, char* argv[]) {
 	playerDestination.x = 0;
 	playerDestination.y = 0;
 
-	/*Player* player = new Player();
-	player->texture = tm->LoadTexture(".\\Assets\\Sprites\\Player.png");
+	Player* player = &level->player;
+	player->texture = tm->LoadTexture(".\\Assets\\Sprites\\IsoTestPlayer.png");
 	player->destination = playerDestination;
-	player->renderer = game->renderer;*/
+	player->renderer = game->renderer;
 
 	game->entities.push_back(level);
-	//game->entities.push_back(player);
 
 	while (game->running()) {
 		frameStart = SDL_GetTicks();
