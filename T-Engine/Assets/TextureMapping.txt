@@ -1,0 +1,8 @@
+0;.\\Assets\\Sprites\\IsoTestVoid.png
+1;.\\Assets\\Sprites\\IsoWhiteTile.png
+@;.\\Assets\\Sprites\\Player.png
+T;.\\Assets\\Sprites\\IsoTestTree.png;64;64
+A;.\\Assets\\Sprites\\IsoHalfTileLeft.png
+S;.\\Assets\\Sprites\\IsoHalfTileDown.png
+W;.\\Assets\\Sprites\\IsoHalfTileUp.png
+D;.\\Assets\\Sprites\\IsoHalfTileRight.png

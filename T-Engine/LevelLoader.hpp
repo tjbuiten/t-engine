@@ -1,19 +1,15 @@
 #pragma once
 #include "Level.hpp"
-#include "Room.hpp"
-#include <vector>
+#include "Tile.hpp"
 #include <string>
-#include "SDL.h"
-#include "SDL_image.h"
+#include <fstream>
+#include <SDL_image.h>
+#include <filesystem>
 
 class LevelLoader {
 public:
-	LevelLoader();
-	~LevelLoader();
-
-	void LoadLevel(Level& level);
+	void loadLevel(std::string dataDirectory, SDL_Renderer* renderer, Level& level);
 
 private:
-	Room LoadRoom(std::string roomDirectory);
-	void LoadTexture(Level& level);
+	std::map<char, Tile> loadTiles(std::string textureDirectory, SDL_Renderer* renderer);
 };

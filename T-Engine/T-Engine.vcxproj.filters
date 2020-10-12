@@ -24,16 +24,10 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files\SourceFiles</Filter>
+    </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\SourceFiles</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
@@ -42,33 +36,15 @@
     <ClCompile Include="LevelLoader.cpp">
       <Filter>Source Files\SourceFiles</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureMap.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Room.cpp">
+    <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\SourceFiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameManager.hpp">
+      <Filter>Source Files\HeaderFiles</Filter>
+    </ClInclude>
     <ClInclude Include="Entity.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.hpp">
       <Filter>Source Files\HeaderFiles</Filter>
     </ClInclude>
     <ClInclude Include="Level.hpp">
@@ -77,22 +53,10 @@
     <ClInclude Include="LevelLoader.hpp">
       <Filter>Source Files\HeaderFiles</Filter>
     </ClInclude>
-    <ClInclude Include="Player.hpp">
+    <ClInclude Include="InputManager.hpp">
       <Filter>Source Files\HeaderFiles</Filter>
     </ClInclude>
-    <ClInclude Include="Room.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureMap.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.hpp">
+    <ClInclude Include="Tile.hpp">
       <Filter>Source Files\HeaderFiles</Filter>
     </ClInclude>
   </ItemGroup>

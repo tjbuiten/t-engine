@@ -1,6 +1,5 @@
 ﻿  Level.cpp
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Level.cpp(30): warning C4018: '<': signed/unsigned mismatch
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Level.cpp(33): warning C4018: '<': signed/unsigned mismatch
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Level.cpp(41): warning C4018: '<': signed/unsigned mismatch
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Level.cpp(44): warning C4018: '<': signed/unsigned mismatch
+  LevelLoader.cpp
+  Main.cpp
+  Generating Code...
   T-Engine.vcxproj -> C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\Debug\T-Engine.exe

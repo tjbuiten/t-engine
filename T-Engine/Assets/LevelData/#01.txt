@@ -1,0 +1,4 @@
+#levelDirectory
+.\\Assets\\Levels\\01\\Layers
+#textureDirectory
+.\\Assets\\Levels\\01\\TextureMapping\\#01.txt

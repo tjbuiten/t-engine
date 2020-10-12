@@ -1,119 +1,116 @@
-#include <iostream>
-#include <vector>
 #include "LevelLoader.hpp"
-#include <fstream>
-#include <filesystem>
-#include "SDL.h"
-#include "SDL_image.h"
-#include "TextureMap.hpp"
-#include "Texture.hpp"
-#include <string_view>
-#include "Game.hpp"
 
-using namespace std::string_view_literals;
-namespace fs = std::filesystem;
+void LevelLoader::loadLevel(std::string dataDirectory, SDL_Renderer* renderer, Level& level) {
+	std::ifstream levelData(dataDirectory);
 
-using namespace std;
+	std::string levelDirectory = "";
+	std::string textureDirectory = "";
 
-LevelLoader::LevelLoader() {
-}
+	if (levelData.is_open()) {
+		std::string line;
+		std::string lastLine = "";
 
-LevelLoader::~LevelLoader() {
-}
-
-void LevelLoader::LoadLevel(Level& level) {
-	LoadTexture(level);
-
-	for (const auto& entry : fs::directory_iterator(level.roomsDirectory)) {
-		level.rooms.push_back(LoadRoom(entry.path().string()));
-	}
-}
-
-Room LevelLoader::LoadRoom(string roomDirectory)
-{
-	ifstream myfile(roomDirectory);
-	Room room;
-
-	if (myfile.is_open())
-	{
-		string line;
-
-		while (getline(myfile, line))
-		{
-			if (line == "LAYER") {
-				Layer layer;
-				room.layers.push_back(layer);
+		while (std::getline(levelData, line)) {
+			if (line[0] == '#')
 				continue;
-			}
 
-			if (room.layers.size() == 0) {
-				continue;
-			}
-
-			room.layers.back().tiles.push_back(line);
+			(levelDirectory == "") ? levelDirectory = line : textureDirectory = line;
 		}
-
-		myfile.close();
 	}
 
-	return room;
+	if (levelDirectory == "" || textureDirectory == "")
+		return;
+
+	level.textureMap = this->loadTiles(textureDirectory, renderer);
+
+	int layers = 0;
+
+	for (const auto& path : std::filesystem::directory_iterator(levelDirectory)) {
+		std::ifstream tileFile(path);
+
+		if (tileFile.is_open()) {
+			std::string line;
+			std::vector<std::vector<Tile>> layer;
+			level.tiles.push_back(layer);
+
+			int rows = 0;
+
+			while (std::getline(tileFile, line)) {
+				std::vector<Tile> row;
+				int x = 550 - (32 * rows);
+				int y = 200 + (16 * rows) - (32 * layers);
+
+				for (char& c : line) {
+					std::map<char, Tile>::iterator mappedTexture = level.textureMap.find(c);
+
+					x += 32;
+					y += 16;
+
+					if (mappedTexture == level.textureMap.end())
+						continue;
+
+					Tile texture = mappedTexture->second;
+					texture.destination.x = x - (texture.destination.w / 2);
+					texture.destination.y = y - texture.destination.h;
+
+					row.push_back(texture);
+				}
+
+				level.tiles.back().push_back(row);
+				rows++;
+			}
+
+			layers++;
+		}
+	}
 }
 
-void LevelLoader::LoadTexture(Level& level) {
-	TextureMap textureMap;
-	ifstream myfile(level.textureDirectory);
+std::map<char, Tile> LevelLoader::loadTiles(std::string textureDirectory, SDL_Renderer* renderer) {
+	std::map<char, Tile> textureMap;
 
-	char character = '*';
-	string textureDirectory = "";
+	std::ifstream textureFile(textureDirectory);
 
-	if (myfile.is_open())
-	{
-		string line;
-		string lastLine = "";
+	if (textureFile.is_open()) {
+		std::string line;
 
-		while (getline(myfile, line))
-		{
-			character = line[0];
-			textureDirectory = line.erase(0,2);
+		while (std::getline(textureFile, line)) {
+			char character = line[0];
 
-			SDL_Surface* tmpSurface = IMG_Load(textureDirectory.c_str());
-			SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
-			SDL_FreeSurface(tmpSurface);
-
-			SDL_Rect destination;
-			destination.w = 64;
-			destination.h = 32;
+			line = line.erase(0, 2);
 
 			std::size_t nextBlock = line.find(';');
 
-			if (nextBlock != std::string::npos) {
-				textureDirectory = line.substr(0, nextBlock);
-				tmpSurface = IMG_Load(textureDirectory.c_str());
-				playerTexture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
-				SDL_FreeSurface(tmpSurface);
+			SDL_Surface* tmpSurface = IMG_Load(line.substr(0, nextBlock).c_str());
 
-				line = line.erase(0, nextBlock + 1);
+			Tile texture;
+			texture.texture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
+			SDL_FreeSurface(tmpSurface);
 
-				std::size_t nextBlock = line.find(';');
+			texture.destination.h = 64;
+			texture.destination.w = 64;
+			texture.destination.x = 0;
+			texture.destination.y = 0;
 
-				if (nextBlock != std::string::npos) {
-					destination.w = stoi(line.substr(0, nextBlock));
 
-					line = line.erase(0, nextBlock + 1);
-					destination.h = stoi(line);
-				}
+			if (nextBlock == std::string::npos) {
+				textureMap[character] = texture;
+				continue;
 			}
 
-			Texture texture;
-			texture.texture = playerTexture;
+			line = line.erase(0, nextBlock + 1);
+			nextBlock = line.find(';');
 
-			texture.destination = destination;
+			if (nextBlock != std::string::npos) {
+				texture.destination.w = stoi(line.substr(0, nextBlock));
+				
+				line = line.erase(0, nextBlock + 1);
+				
+				texture.destination.h = stoi(line);
+			}
 
-			textureMap.textures[character] = texture;
+			textureMap[character] = texture;
 		}
-
-		myfile.close();
 	}
 
-	level.textureMap = textureMap;
-};
+	return textureMap;
+}

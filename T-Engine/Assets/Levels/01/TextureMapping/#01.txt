@@ -1,0 +1,6 @@
+1;.\\Assets\\Sprites\\IsometricFullTile.png
+T;.\\Assets\\Sprites\\TreeTop.png;147;171
+S;.\\Assets\\Sprites\\TreeStump.png
+Q;.\\Assets\\Sprites\\Statue.png;64;128
+P;.\\Assets\\Sprites\\Player.png;64;128
+W;.\\Assets\\Sprites\\WoodTile.png;96;64

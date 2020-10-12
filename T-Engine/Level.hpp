@@ -1,25 +1,18 @@
 #pragma once
-#include "Room.hpp"
+#include "Tile.hpp"
 #include "Entity.hpp"
-#include "Layer.hpp"
-#include "Player.hpp"
-#include "TextureMap.hpp"
+#include "InputManager.hpp"
+#include <map>
 #include <vector>
-#include <string>
 
-class Level : public Entity {
-public:
-	Level(std::string roomsDirectory, std::string textureDirectory, int tileRowLength, int roomRowLength);
-	~Level();
-	virtual void Render();
-
-	const int tileRowLength;
-	const int roomRowLength;
-	const std::string roomsDirectory;
-	const std::string textureDirectory;
-	Player player;
-	std::vector<Room> rooms;
-	TextureMap textureMap;
-
+class Level: public Entity {
 private:
+	InputManager inputManager;
+	int cameraX = 0;
+	int cameraY = 0;
+public:
+	std::map<char, Tile> textureMap;
+	std::vector<std::vector<std::vector<Tile>>> tiles;
+	virtual void render(SDL_Renderer* renderer);
+	virtual void update();
 };

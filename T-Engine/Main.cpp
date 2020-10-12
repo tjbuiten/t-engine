@@ -1,58 +1,95 @@
-#include "Level.hpp"
-#include "LevelLoader.hpp"
-#include "Game.hpp"
-#include "Player.hpp"
 #include "SDL.h"
 #include "SDL_image.h"
-#include "TextureManager.hpp"
-
-Game* game = nullptr;
+#include "GameManager.hpp"
+#include <iostream>
+#include "Level.hpp"
+#include "LevelLoader.hpp"
 
 int main(int argc, char* argv[]) {
-	const int FPS = 60;
-	const int FRAME_DELAY = 1000 / FPS;
+	GameManager gameManager;
 
+	if (!gameManager.init("T-Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 800, false))
+		return 0;
+
+	LevelLoader loader;
+	Level level;
+	loader.loadLevel(".\\Assets\\LevelData\\#01.txt", gameManager.renderer, level);
+
+	gameManager.addEntity(&level);
+
+	const int SCREEN_FPS = 60;
+	const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 	Uint32 frameStart;
 	int frameTime;
 
-	game = new Game();
-	game->init("2d-engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 800, false);
-
-	Level* level = new Level(".\\Assets\\Rooms", ".\\Assets\\Textures\\TextureMapping.txt", 16, 1);
-	LevelLoader levelLoader; 
-	levelLoader.LoadLevel(*level);
-	level->renderer = game->renderer;
-	level->Render();
-
-	TextureManager* tm = new TextureManager();
-
-	SDL_Rect playerDestination;
-	playerDestination.h = 32;
-	playerDestination.w = 64;
-	playerDestination.x = 0;
-	playerDestination.y = 0;
-
-	Player* player = &level->player;
-	player->texture = tm->LoadTexture(".\\Assets\\Sprites\\IsoTestPlayer.png");
-	player->destination = playerDestination;
-	player->renderer = game->renderer;
-
-	game->entities.push_back(level);
-
-	while (game->running()) {
+	while (gameManager.isRunning()) {
 		frameStart = SDL_GetTicks();
-
-		game->handleEvents();
-		game->update();
+		
+		gameManager.handleEvents();
+		gameManager.nextFrame();
 
 		frameTime = SDL_GetTicks() - frameStart;
 
-		if (FRAME_DELAY > frameTime) {
-			SDL_Delay(FRAME_DELAY - frameTime);
+		if (SCREEN_TICKS_PER_FRAME > frameTime) {
+			SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTime);
 		}
 	}
 
-	game->clean();
-
 	return 0;
 }
+
+
+//Texture texture;
+
+//SDL_Surface* tmpSurface = IMG_Load(".\\Assets\\Sprites\\IsometricFullTile.png");
+//texture.texture = SDL_CreateTextureFromSurface(gameManager.renderer, tmpSurface);
+//SDL_FreeSurface(tmpSurface);
+
+//texture.destination.h = 64;
+//texture.destination.w = 64;
+//texture.destination.x = 350;
+//texture.destination.y = 50;
+
+//Entity ground = Entity(texture, 200, 200);
+//Entity groundTwo = ground;
+//Entity groundThree = ground;
+//Entity groundFour = ground;
+//Entity groundFive = ground;
+//Entity groundSix = ground;
+//Entity groundSeven = ground;
+//Entity groundEight = ground;
+//Entity groundNine = ground;
+//Entity groundTen = ground;
+//groundTwo.setPosition(232, 216);
+//groundThree.setPosition(264, 232);
+//groundFour.setPosition(168, 216);
+//groundFive.setPosition(200, 232);
+//groundSix.setPosition(232, 248);
+//groundSeven.setPosition(136, 232);
+//groundEight.setPosition(168, 248);
+//groundNine.setPosition(200, 264);
+//groundTen.setPosition(200, 168);
+
+//gameManager.addEntity(ground);
+//gameManager.addEntity(groundTwo);
+//gameManager.addEntity(groundThree);
+//gameManager.addEntity(groundFour);
+//gameManager.addEntity(groundFive);
+//gameManager.addEntity(groundSix);
+//gameManager.addEntity(groundSeven);
+//gameManager.addEntity(groundEight);
+//gameManager.addEntity(groundNine);
+
+//Texture textureTwo;
+
+//tmpSurface = IMG_Load(".\\Assets\\Sprites\\TreeOne.png");
+//textureTwo.texture = SDL_CreateTextureFromSurface(gameManager.renderer, tmpSurface);
+//SDL_FreeSurface(tmpSurface);
+
+//textureTwo.destination.h = 256;
+//textureTwo.destination.w = 194;
+//textureTwo.destination.x = 350;
+//textureTwo.destination.y = 50;
+//Entity tree = Entity(textureTwo, 136, 30);
+
+//gameManager.addEntity(tree);
