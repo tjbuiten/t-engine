@@ -4,4 +4,5 @@
 class InputManager {
 public:
 	bool KeyDown(SDL_Scancode scanCode);
+	bool MouseClick();
 };

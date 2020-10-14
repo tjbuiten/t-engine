@@ -37,20 +37,19 @@ void LevelLoader::loadLevel(std::string dataDirectory, SDL_Renderer* renderer, L
 
 			while (std::getline(tileFile, line)) {
 				std::vector<Tile> row;
-				int x = 550 - (32 * rows);
-				int y = 200 + (16 * rows) - (32 * layers);
+				int x = -64;
+				int y = 64 + 64 * rows;
 
 				for (char& c : line) {
 					std::map<char, Tile>::iterator mappedTexture = level.textureMap.find(c);
 
-					x += 32;
-					y += 16;
+					x += 64;
 
 					if (mappedTexture == level.textureMap.end())
 						continue;
 
 					Tile texture = mappedTexture->second;
-					texture.destination.x = x - (texture.destination.w / 2);
+					texture.destination.x = x;
 					texture.destination.y = y - texture.destination.h;
 
 					row.push_back(texture);

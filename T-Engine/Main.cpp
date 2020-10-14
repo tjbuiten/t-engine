@@ -4,11 +4,12 @@
 #include <iostream>
 #include "Level.hpp"
 #include "LevelLoader.hpp"
+#include "Player.hpp"
 
 int main(int argc, char* argv[]) {
 	GameManager gameManager;
 
-	if (!gameManager.init("T-Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 800, false))
+	if (!gameManager.init("T-Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 640, false))
 		return 0;
 
 	LevelLoader loader;
@@ -16,6 +17,16 @@ int main(int argc, char* argv[]) {
 	loader.loadLevel(".\\Assets\\LevelData\\#01.txt", gameManager.renderer, level);
 
 	gameManager.addEntity(&level);
+
+	SDL_Surface* tmpSurface = IMG_Load(".\\Assets\\Sprites\\SwordSwingAnimation.png");
+	Player player;
+	player.texture = SDL_CreateTextureFromSurface(gameManager.renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
+	player.destination.h = 111;
+	player.destination.w = 111;
+	player.destination.x = 608;
+	player.destination.y = 450;
+	gameManager.addEntity(&player);
 
 	const int SCREEN_FPS = 60;
 	const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
