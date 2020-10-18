@@ -36,7 +36,7 @@ void Enemy::render(SDL_Renderer * renderer) {
 	source.w = 111;
 
 	if (attacking) {
-		if (frames == 50) {
+		if (frames == 10) {
 			source.x += 111;
 
 			if (source.x > 888) {

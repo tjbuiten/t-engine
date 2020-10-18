@@ -1,4 +1,5 @@
 #include "LevelLoader.hpp"
+#include <iostream>
 
 void LevelLoader::loadLevel(std::string dataDirectory, SDL_Renderer* renderer, Level& level) {
 	std::ifstream levelData(dataDirectory);

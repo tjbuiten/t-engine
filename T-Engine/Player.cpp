@@ -70,8 +70,6 @@ void Player::update() {
 	this->collider.w = 45 * direction;
 
 	if (attacking && frames == 1 && source.x >= 555) {
-		std::cout << "AYAYAYAYAYYAA\n\n";
-		std::cout << "width: " << this->collider.w << "\n\n";
 		this->collider.w = 111 * direction;
 	}
 }

@@ -7,7 +7,7 @@ SDL_Renderer* GameManager::renderer = nullptr;
 bool GameManager::init(const char* title, int xpos, int ypos, int width, int height, bool fullScreen) {
 	int flags = (fullScreen) ? SDL_WINDOW_FULLSCREEN : SDL_WINDOWEVENT_NONE;
 
-	window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+	window = SDL_CreateWindow(title, xpos, ypos, width, height, SDL_WINDOW_OPENGL);
 
 	if (!window)
 		return false;
@@ -16,6 +16,10 @@ bool GameManager::init(const char* title, int xpos, int ypos, int width, int hei
 
 	if (!renderer)
 		return false;
+
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+	SDL_RenderClear(renderer);
 
 	running = true;
 
@@ -45,8 +49,8 @@ void GameManager::handleEvents() {
 
 void GameManager::nextFrame() {
 	update();
-	render();
 	handleCollissions();
+	render();
 }
 
 void GameManager::update() {
@@ -55,6 +59,14 @@ void GameManager::update() {
 }
 
 void GameManager::render() {
+	if (x == 1) {
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
+		x = 0;
+	}
+	else {
+		SDL_SetRenderDrawColor(renderer, 0, 255, 0, 0);
+		x = 1;
+	}
 	SDL_RenderClear(renderer);
 
 	for (Entity* entity : this->entities)
