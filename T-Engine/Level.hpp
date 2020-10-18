@@ -15,4 +15,5 @@ public:
 	std::vector<std::vector<std::vector<Tile>>> tiles;
 	virtual void render(SDL_Renderer* renderer);
 	virtual void update();
+	virtual bool collisionCheck(Collider* collider);
 };

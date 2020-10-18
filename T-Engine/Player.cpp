@@ -21,7 +21,6 @@ void Player::update() {
 		}
 
 		if (this->inputManager.KeyDown(SDL_SCANCODE_W) && !this->jumping) {
-			this->jumping = true;
 			this->velocityY = 20;
 		}
 	}
@@ -49,6 +48,8 @@ void Player::update() {
 
 	if (!this->inputManager.KeyDown(SDL_SCANCODE_W))
 		this->jumping = false;
+	else
+		this->jumping = true;
  
 	if (this->velocityX > 0)
 		this->direction = 1;
@@ -62,6 +63,17 @@ void Player::update() {
 		this->velocityY = 0;
 		this->destination.y = 640 - this->destination.h;
 	}
+
+	this->collider.x = (this->direction > 0) ? this->destination.x : this->destination.x + 45;
+	this->collider.y = this->destination.y;
+	this->collider.h = this->destination.h;
+	this->collider.w = 45 * direction;
+
+	if (attacking && frames == 1 && source.x >= 555) {
+		std::cout << "AYAYAYAYAYYAA\n\n";
+		std::cout << "width: " << this->collider.w << "\n\n";
+		this->collider.w = 111 * direction;
+	}
 }
 
 bool Player::isGrounded() {
@@ -73,7 +85,7 @@ void Player::render(SDL_Renderer* renderer) {
 	source.w = 111;
 
 	if (attacking) {
-		if (frames == 4) {
+		if (frames == 1) {
 			source.x += 111;
 
 			if (source.x > 888) {
@@ -99,4 +111,9 @@ void Player::render(SDL_Renderer* renderer) {
 		NULL,
 		(this->direction == 1) ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL
 	);
-};
+}
+bool Player::collisionCheck(Entity* entity)
+{
+	return false;
+}
+;

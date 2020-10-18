@@ -1,4 +1,6 @@
 #include "GameManager.hpp"
+#include "Enemy.hpp"
+#include <iostream>
 
 SDL_Renderer* GameManager::renderer = nullptr;
 
@@ -44,6 +46,7 @@ void GameManager::handleEvents() {
 void GameManager::nextFrame() {
 	update();
 	render();
+	handleCollissions();
 }
 
 void GameManager::update() {
@@ -58,4 +61,54 @@ void GameManager::render() {
 		entity->render(this->renderer);
 
 	SDL_RenderPresent(this->renderer);
+}
+
+Enemy* GameManager::spawnEnemy(Player* player)
+{
+	SDL_Surface* tmpSurface = IMG_Load(".\\Assets\\Sprites\\SwordSwingEnemyAnimation.png");
+	Enemy* enemy = new Enemy();
+	enemy->texture = SDL_CreateTextureFromSurface(this->renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
+	enemy->destination.h = 111;
+	enemy->destination.w = 111;
+	enemy->destination.x = 100;
+	enemy->destination.y = 450;
+	enemy->player = player;
+
+	return enemy;
+}
+
+Player* GameManager::spawnPlayer()
+{
+	SDL_Surface* tmpSurface = IMG_Load(".\\Assets\\Sprites\\SwordSwingAnimation.png");
+	Player* player = new Player();
+	player->texture = SDL_CreateTextureFromSurface(this->renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
+	player->destination.h = 111;
+	player->destination.w = 111;
+	player->destination.x = 608;
+	player->destination.y = 450;
+
+	this->player = player;
+
+	return player;
+}
+
+void GameManager::handleCollissions() {
+	for (Entity* entity : this->entities) {
+		if (entity == player)
+			continue;
+
+		if (entity->collisionCheck(player)) {
+			std::vector<Entity*>::iterator p;
+
+			p = std::find(this->entities.begin(), this->entities.end(), entity);
+
+			if (p != this->entities.end()) {
+				delete entity;
+				entity = NULL;
+				this->entities.erase(p);
+			}
+		};
+	}
 }

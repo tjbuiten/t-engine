@@ -20,3 +20,7 @@ void Level::update() {
 		Level::cameraX--;
 	}*/
 }
+
+bool Level::collisionCheck(Collider* collider) {
+	return false;
+}

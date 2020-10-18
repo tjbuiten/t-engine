@@ -2,9 +2,11 @@
 #include "Entity.hpp"
 #include "Collider.hpp"
 #include "InputManager.hpp"
+#include "Player.hpp"
 
-class Player : public Entity {
+class Enemy : public Entity {
 private:
+	SDL_Rect source;
 	InputManager inputManager;
 	float velocityX = 0;
 	float velocityY = 0;
@@ -13,10 +15,11 @@ private:
 	bool jumping = false;
 	bool dashing = false;
 	bool attacking = false;
-	bool isGrounded();
+	bool isPlayerInRange();
 public:
-	SDL_Rect source;
+	Enemy() {};
+	~Enemy() {};
+	Player* player;
 	virtual void update();
 	virtual void render(SDL_Renderer* renderer);
-	virtual bool collisionCheck(Entity* entity);
 };

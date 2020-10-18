@@ -5,6 +5,7 @@
 #include "Level.hpp"
 #include "LevelLoader.hpp"
 #include "Player.hpp"
+#include "Enemy.hpp"
 
 int main(int argc, char* argv[]) {
 	GameManager gameManager;
@@ -18,16 +19,14 @@ int main(int argc, char* argv[]) {
 
 	gameManager.addEntity(&level);
 
-	SDL_Surface* tmpSurface = IMG_Load(".\\Assets\\Sprites\\SwordSwingAnimation.png");
-	Player player;
-	player.texture = SDL_CreateTextureFromSurface(gameManager.renderer, tmpSurface);
-	SDL_FreeSurface(tmpSurface);
-	player.destination.h = 111;
-	player.destination.w = 111;
-	player.destination.x = 608;
-	player.destination.y = 450;
-	gameManager.addEntity(&player);
+	Player* player = gameManager.spawnPlayer();
+	gameManager.addEntity(player);
 
+	Enemy* enemy = gameManager.spawnEnemy(player);
+	gameManager.addEntity(enemy);
+	
+	SDL_GLContext mainContext = SDL_GL_CreateContext(gameManager.window);
+	
 	const int SCREEN_FPS = 60;
 	const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 	Uint32 frameStart;
@@ -49,58 +48,6 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
+void initialize(GameManager gm) {
 
-//Texture texture;
-
-//SDL_Surface* tmpSurface = IMG_Load(".\\Assets\\Sprites\\IsometricFullTile.png");
-//texture.texture = SDL_CreateTextureFromSurface(gameManager.renderer, tmpSurface);
-//SDL_FreeSurface(tmpSurface);
-
-//texture.destination.h = 64;
-//texture.destination.w = 64;
-//texture.destination.x = 350;
-//texture.destination.y = 50;
-
-//Entity ground = Entity(texture, 200, 200);
-//Entity groundTwo = ground;
-//Entity groundThree = ground;
-//Entity groundFour = ground;
-//Entity groundFive = ground;
-//Entity groundSix = ground;
-//Entity groundSeven = ground;
-//Entity groundEight = ground;
-//Entity groundNine = ground;
-//Entity groundTen = ground;
-//groundTwo.setPosition(232, 216);
-//groundThree.setPosition(264, 232);
-//groundFour.setPosition(168, 216);
-//groundFive.setPosition(200, 232);
-//groundSix.setPosition(232, 248);
-//groundSeven.setPosition(136, 232);
-//groundEight.setPosition(168, 248);
-//groundNine.setPosition(200, 264);
-//groundTen.setPosition(200, 168);
-
-//gameManager.addEntity(ground);
-//gameManager.addEntity(groundTwo);
-//gameManager.addEntity(groundThree);
-//gameManager.addEntity(groundFour);
-//gameManager.addEntity(groundFive);
-//gameManager.addEntity(groundSix);
-//gameManager.addEntity(groundSeven);
-//gameManager.addEntity(groundEight);
-//gameManager.addEntity(groundNine);
-
-//Texture textureTwo;
-
-//tmpSurface = IMG_Load(".\\Assets\\Sprites\\TreeOne.png");
-//textureTwo.texture = SDL_CreateTextureFromSurface(gameManager.renderer, tmpSurface);
-//SDL_FreeSurface(tmpSurface);
-
-//textureTwo.destination.h = 256;
-//textureTwo.destination.w = 194;
-//textureTwo.destination.x = 350;
-//textureTwo.destination.y = 50;
-//Entity tree = Entity(textureTwo, 136, 30);
-
-//gameManager.addEntity(tree);
+}
