@@ -2,6 +2,25 @@
 #include <iostream>
 
 void Player::update() {
+
+	if (this->inputManager.KeyDown(SDL_SCANCODE_E) && !this->marker->active) {
+		this->marker->active = true;
+		this->marker->destination = this->destination;
+		this->marker->destination.y += 50;
+		this->marker->direction = this->direction;
+	}
+	else if (this->marker->active && !this->inputManager.KeyDown(SDL_SCANCODE_E)) {
+		this->destination = marker->destination;
+		this->marker->active = false;
+		this->velocityX = 0;
+		this->velocityY = 0;
+		this->destination.h = 111;
+		this->destination.w = 111;
+	}
+
+	if (this->marker->active)
+		return;
+
 	if (this->isGrounded()) {
 		this->velocityX = 0;
 
@@ -41,7 +60,6 @@ void Player::update() {
 	if (this->inputManager.MouseClick() &&
 		!this->attacking)
 		this->attacking = true;
-
 
 	if (!this->inputManager.KeyDown(SDL_SCANCODE_SPACE))
 		this->dashing = false;

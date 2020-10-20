@@ -1,15 +1,2 @@
-﻿  Collider.cpp
-  Enemy.cpp
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Enemy.cpp(12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Enemy.cpp(20): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-  Entity.cpp
-  GameManager.cpp
-  InputManager.cpp
-  Level.cpp
-  LevelLoader.cpp
-  Main.cpp
-  Player.cpp
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Player.cpp(59): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Player.cpp(60): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
+﻿  Marker.cpp
   T-Engine.vcxproj -> C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\Debug\T-Engine.exe

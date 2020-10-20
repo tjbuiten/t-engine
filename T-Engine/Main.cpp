@@ -22,7 +22,13 @@ int main(int argc, char* argv[]) {
 	gameManager.addEntity(&level);
 
 	Player* player = gameManager.spawnPlayer();
+	player->marker = new Marker();
+	SDL_Surface* tmpSurface = IMG_Load(".\\Assets\\Sprites\\Marker.png");
+	player->marker->texture = SDL_CreateTextureFromSurface(gameManager.renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
+	player->marker->destination = player->destination;
 	gameManager.addEntity(player);
+	gameManager.addEntity(player->marker);
 
 	Enemy* enemy = gameManager.spawnEnemy(player);
 	gameManager.addEntity(enemy);
