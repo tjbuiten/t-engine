@@ -2,33 +2,17 @@
 #include <iostream>
 
 void Player::update() {
-
-	if (this->inputManager.KeyDown(SDL_SCANCODE_E) && !this->marker->active) {
-		this->marker->active = true;
-		this->marker->destination = this->destination;
-		this->marker->destination.y += 50;
-		this->marker->direction = this->direction;
+	if (this->marker->active) {
+		std::cout << "Oyayayay\n\n\n";
 	}
-	else if (this->marker->active && !this->inputManager.KeyDown(SDL_SCANCODE_E)) {
-		this->destination = marker->destination;
-		this->marker->active = false;
-		this->velocityX = 0;
-		this->velocityY = 0;
-		this->destination.h = 111;
-		this->destination.w = 111;
-	}
-
-	if (this->marker->active)
-		return;
-
 	if (this->isGrounded()) {
 		this->velocityX = 0;
 
-		if (this->inputManager.KeyDown(SDL_SCANCODE_A) &&
+		if (this->inputManager.MovingLeft() &&
 			this->destination.x > 0)
 			this->velocityX = -5;
 
-		if (this->inputManager.KeyDown(SDL_SCANCODE_D) &&
+		if (this->inputManager.MovingRight() &&
 			this->destination.x < 1280 - destination.w)
 			this->velocityX = 5;
 
@@ -39,17 +23,17 @@ void Player::update() {
 			this->destination.x += this->direction * -200;
 		}
 
-		if (this->inputManager.KeyDown(SDL_SCANCODE_W) && !this->jumping) {
+		if (this->inputManager.Jumping() && !this->jumping) {
 			this->velocityY = 20;
 		}
 	}
 	else {
-		if (this->inputManager.KeyDown(SDL_SCANCODE_A) &&
+		if (this->inputManager.MovingLeft() &&
 			this->velocityX > -5 &&
 			this->destination.x > 0)
 			this->velocityX -= 0.5;
 
-		if (this->inputManager.KeyDown(SDL_SCANCODE_D) &&
+		if (this->inputManager.MovingRight() &&
 			this->velocityX < 5 &&
 			this->destination.x < 1280 - destination.w)
 			this->velocityX += 0.5;
@@ -64,7 +48,7 @@ void Player::update() {
 	if (!this->inputManager.KeyDown(SDL_SCANCODE_SPACE))
 		this->dashing = false;
 
-	if (!this->inputManager.KeyDown(SDL_SCANCODE_W))
+	if (!this->inputManager.Jumping())
 		this->jumping = false;
 	else
 		this->jumping = true;
@@ -97,6 +81,17 @@ bool Player::isGrounded() {
 }
 
 void Player::render(SDL_Renderer* renderer) {
+	if (this->marker->active) {
+		SDL_SetRenderDrawColor(renderer, 150, 0, 0, SDL_ALPHA_OPAQUE);
+		SDL_RenderDrawLine(
+			renderer,
+			this->destination.x + 32,
+			this->destination.y + 55,
+			this->marker->destination.x + 32,
+			this->marker->destination.y + 32
+		);
+	}
+
 	source.h = 111;
 	source.w = 111;
 
@@ -132,4 +127,46 @@ bool Player::collisionCheck(Entity* entity)
 {
 	return false;
 }
-;
+
+void Player::crouching() {
+	if (this->marker->active) {
+		this->marker->destination.y += 4;
+
+		return;
+	}
+}
+
+void Player::jump() {
+	if (this->marker->active) {
+		this->marker->destination.y -= 4;
+		return;
+	}
+	if (!this->jumping && this->isGrounded())
+		this->velocityY = 20;
+}
+
+void Player::throwMarker() {
+	if (!this->marker->active) {
+		this->marker->active = true;
+		this->marker->destination = this->destination;
+		this->marker->destination.y += 23.5;
+		this->marker->direction = this->direction;
+		std::cout << "HEYEYEYEY\n\n\n";
+	}
+}
+
+void Player::releaseMarker() {
+	if (this->marker->active) {
+		std::cout << "oraora\n\n";
+		this->destination = marker->destination;
+		this->marker->active = false;
+		this->velocityX = 0;
+		this->velocityY = 0;
+		this->destination.h = 111;
+		this->destination.w = 111;
+	}
+}
+
+void Player::handleEvent(int eventType) {
+
+}

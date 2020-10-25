@@ -5,6 +5,7 @@
 #include "SDL_image.h"
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "SDL_EventBus.hpp"
 
 class GameManager {
 private:
@@ -12,6 +13,7 @@ private:
 	void update();
 	void render();
 	int x = 0;
+	SDL_EventBus* eventBus = SDL_EventBus::getInstance();
 public:
 	SDL_Window* window;
 	std::vector<Entity*> entities;
