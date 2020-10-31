@@ -42,7 +42,8 @@ int main(int argc, char* argv[]) {
 	Marker marker = Marker(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
 		*markerPosition,
-		&eventBus
+		&eventBus,
+		&collissionManager
 	);
 
 	Player player = Player(

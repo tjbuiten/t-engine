@@ -102,11 +102,3 @@ bool Player::shouldSpriteFlip() {
 
 	return (this->marker->position.x == this->position.x) ? this->lastDirection == 1 : this->marker->position.x > this->position.x;
 }
-
-bool Player::collides(ColliderInterface* collider) {
-	return (collider->hitbox->x > this->position.x && collider->hitbox->x < this->position.x + 50);
-}
-
-void Player::handleCollision() {
-	this->velocityY += 10;
-}

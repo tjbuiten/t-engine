@@ -5,6 +5,6 @@ class ColliderInterface {
 private:
 public:
 	SDL_Rect* hitbox;
-	bool collides(ColliderInterface* collider);
-	void handleCollision();
+	virtual bool collides(SDL_Rect* hitbox) = 0;
+	virtual void handleCollision() = 0;
 };

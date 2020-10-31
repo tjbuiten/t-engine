@@ -9,7 +9,7 @@ private:
 	int verticalDirection = 0;
 	int horizontalDirection = 0;
 public:
-	Marker(SDL_Texture* texture, SDL_Rect position, SDL_EventBus* eventBus) : Entity(texture, position, eventBus) {
+	Marker(SDL_Texture* texture, SDL_Rect position, SDL_EventBus* eventBus, CollissionManager* collissionManager) : Entity(texture, position, eventBus, collissionManager) {
 		eventBus->subscribe(SDL_JOYAXISMOTION, this);
 
 		this->textureOrigin.h = 64;

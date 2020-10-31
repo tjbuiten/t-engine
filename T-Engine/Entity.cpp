@@ -16,3 +16,11 @@ void Entity::update() {};
 void Entity::render(SDL_Renderer* renderer) {
 	SDL_RenderCopy(renderer, this->texture, NULL, &this->position);
 }
+
+bool Entity::collides(SDL_Rect* hitbox) {
+	return false;
+}
+
+void Entity::handleCollision() {
+
+}

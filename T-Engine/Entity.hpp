@@ -1,24 +1,31 @@
 #pragma once
 #include "SDL_image.h"
 #include "SDL_EventHandlerInterface.hpp"
-#include "Events.hpp"
 #include "SDL_EventBus.hpp"
+#include "Events.hpp"
 #include <iostream>
+#include "ColliderInterface.hpp"
+#include "CollissionManager.hpp"
 
-class Entity : public SDL_EventHandlerInterface {
+class Entity : public SDL_EventHandlerInterface, ColliderInterface {
 public:
 	SDL_Texture* texture;
 	SDL_Rect position;
 
-	Entity(SDL_Texture* texture, SDL_Rect position, SDL_EventBus* eventBus) {
+	Entity(SDL_Texture* texture, SDL_Rect position, SDL_EventBus* eventBus, CollissionManager* collissionManager) {
 		this->texture = texture;
 		this->position = position;
 
 		eventBus->subscribe(events::update, this);
 		eventBus->subscribe(events::render, this);
+
+		collissionManager->addCollider(this);
 	}
 
 	virtual void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event = nullptr);
 	virtual void update();
 	virtual void render(SDL_Renderer* renderer);
+
+	virtual bool collides(SDL_Rect* hitbox);
+	virtual void handleCollision();
 };
