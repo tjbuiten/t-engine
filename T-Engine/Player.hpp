@@ -1,38 +1,38 @@
 #pragma once
 #include "Entity.hpp"
-#include "Collider.hpp"
-#include "InputManager.hpp"
 #include "Marker.hpp"
-#include "SDL_EventHandlerInterface.hpp"
-#include "SDL_EventBus.hpp"
+#include "ColliderInterface.hpp"
+#include "CollissionManager.hpp"
 
-class Player : public Entity, SDL_EventHandlerInterface {
+class Player : public Entity, ColliderInterface {
 private:
-	float velocityX = 0;
-	float velocityY = 0;
-	int direction = 1;
-	int frames = 0;
-	bool jumping = false;
-	bool dashing = false;
-	bool attacking = false;
-	bool isGrounded();
+	Marker* marker = nullptr;
+	CollissionManager* collissionManager = nullptr;
+	int direction = 0;
+	int lastDirection = 0;
+	int velocityY = 0;
+
+	bool shouldSpriteFlip();
 public:
-	Player() {
-		SDL_EventBus* eventBus = SDL_EventBus::getInstance();
+	Player(SDL_Texture* texture, SDL_Rect position, SDL_EventBus* eventBus, Marker* marker, CollissionManager* collissionManager): Entity (texture, position, eventBus) {
+		this->collissionManager = collissionManager;
+		collissionManager->addCollider();
+
 		eventBus->subscribe(SDL_CONTROLLERBUTTONDOWN, this);
 		eventBus->subscribe(SDL_CONTROLLERBUTTONUP, this);
-	}
+		eventBus->subscribe(SDL_JOYAXISMOTION, this);
 
-	InputManager inputManager;
-	Marker* marker;
-	SDL_Rect source;
+		this->marker = marker;
+	};
+
+	virtual void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event = nullptr);
 	virtual void update();
 	virtual void render(SDL_Renderer* renderer);
-	virtual bool collisionCheck(Entity* entity);
-	virtual void handleEvent(SDL_Event eventType);
+	void handleButtonInput(SDL_Event* event);
+	void handleButtonRelease(SDL_Event* event);
+	void handleJoystickInput(SDL_Event* event);
 
-	void throwMarker();
-	void crouching();
-	void jump();
-	void releaseMarker();
+
+	virtual bool collides(ColliderInterface* collider);
+	virtual void handleCollision();
 };

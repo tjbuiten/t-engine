@@ -6,20 +6,9 @@
 
 class SDL_EventBus {
 private:
-	static SDL_EventBus* instance;
-
-	std::map<SDL_EventType, std::vector<SDL_EventHandlerInterface*>> eventHandlers;
-
-	SDL_EventBus();
+	std::map<int, std::vector<SDL_EventHandlerInterface*>> eventHandlers;
 public:
-	static SDL_EventBus* getInstance() {
-		if (instance == NULL)
-			instance = new SDL_EventBus;
+	void subscribe(int, SDL_EventHandlerInterface*);
 
-		return instance;
-	}
-
-	void subscribe(SDL_EventType, SDL_EventHandlerInterface*);
-
-	void handleEvents();
+	void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event = nullptr);
 };

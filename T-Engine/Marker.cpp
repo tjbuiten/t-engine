@@ -1,36 +1,73 @@
 #include "Marker.hpp"
 
 void Marker::update() {
-	if (!active)
+	if (!visible)
 		return;
 
-	this->destination.x += this->direction * 10;
+	if (this->verticalDirection != 0)
+		this->position.y = (this->verticalDirection < 0) ? this->position.y - 4 : this->position.y + 4;
+
+	if (this->horizontalDirection != 0)
+		this->position.x = (this->horizontalDirection < 0) ? this->position.x - 4 : this->position.x + 4;
 }
 
 void Marker::render(SDL_Renderer* renderer) {
-	if (active) {
-		this->destination.h = 64;
-		this->destination.w = 64;
+	if (!visible)
+		return;
 
-		this->source.h = 64;
-		this->source.w = 64;
-		this->source.y = 0;
+	SDL_RenderCopy(renderer, this->texture, &this->textureOrigin, &this->position);
 
-		frames++;
+	this->frames++;
 
-		if (frames == 5) {
-			source.x = (source.x == 704) ? 0 : source.x + 64;
-			frames = 0;
+	if (frames >= 3) {
+		this->textureOrigin.x += this->position.w;
+
+		if (this->textureOrigin.x > 704) {
+			this->textureOrigin.x = 0;
 		}
 
-		SDL_RenderCopyEx(
-			renderer,
-			texture,
-			&source,
-			&destination,
-			NULL,
-			NULL,
-			SDL_FLIP_NONE
-		);
+		this->frames = 0;
 	}
 }
+
+void Marker::display() {
+	this->visible = true;
+}
+
+void Marker::hide() {
+	this->visible = false;
+}
+
+bool Marker::isVisible() {
+	return this->visible;
+}
+
+void Marker::handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event) {
+	Entity::handleEvent(eventType, renderer, event);
+
+	switch (eventType) {
+	case SDL_JOYAXISMOTION:
+		this->handleJoystickInput(event);
+		break;
+	}
+}
+
+void Marker::handleJoystickInput(SDL_Event* event) {
+	if (event->caxis.axis == SDL_CONTROLLER_AXIS_LEFTY) {
+		this->verticalDirection = 0;
+
+		if (event->caxis.value < -10000)
+			this->verticalDirection = -1;
+		if (event->caxis.value > 10000)
+			this->verticalDirection = 1;
+	}
+
+	if (event->caxis.axis == SDL_CONTROLLER_AXIS_LEFTX) {
+		this->horizontalDirection = 0;
+
+		if (event->caxis.value < -10000)
+			this->horizontalDirection = -1;
+		if (event->caxis.value > 10000)
+			this->horizontalDirection = 1;
+	}
+};

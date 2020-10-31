@@ -3,11 +3,27 @@
 
 class Marker : public Entity {
 private:
-	SDL_Rect source;
+	bool visible = false;
+	SDL_Rect textureOrigin;
 	int frames = 0;
+	int verticalDirection = 0;
+	int horizontalDirection = 0;
 public:
-	bool active = false;
-	int direction = 0;
+	Marker(SDL_Texture* texture, SDL_Rect position, SDL_EventBus* eventBus) : Entity(texture, position, eventBus) {
+		eventBus->subscribe(SDL_JOYAXISMOTION, this);
+
+		this->textureOrigin.h = 64;
+		this->textureOrigin.w = 64;
+		this->textureOrigin.x = 0;
+		this->textureOrigin.y = 0;
+	};
+
 	virtual void update();
 	virtual void render(SDL_Renderer* renderer);
+
+	void display();
+	void hide();
+	bool isVisible();
+	void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event);
+	void handleJoystickInput(SDL_Event* event);
 };

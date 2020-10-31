@@ -13,75 +13,105 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\HeaderFiles">
-      <UniqueIdentifier>{fa71f1bd-1d9a-4e72-bfd9-3330053d6526}</UniqueIdentifier>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{d53b427e-d284-4663-8f9d-57dbf726782c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SourceFiles">
-      <UniqueIdentifier>{537ab9c6-a668-4a47-9945-584d9cb7939e}</UniqueIdentifier>
+    <Filter Include="Source Files\Events\Headers">
+      <UniqueIdentifier>{c991c3fb-4468-448f-ba13-7376d9af38ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events\Source">
+      <UniqueIdentifier>{70435e58-2b3e-4711-b1ac-5c5f744b5062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{b04051c8-14e0-484a-9384-79b068dbddf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers\Source">
+      <UniqueIdentifier>{a73a1a4a-230a-4172-89a2-94e389f9348c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers\Headers">
+      <UniqueIdentifier>{8f2b219f-500e-44f0-b8f1-e753f311196b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{4a41fda2-3906-4d9d-9af6-09dcb3d3af7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Headers">
+      <UniqueIdentifier>{656e1964-19a3-4eaa-ade5-7e71a23fde05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Source">
+      <UniqueIdentifier>{774f3b0f-2d6d-40a2-9c92-b0df5d878c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Colliders">
+      <UniqueIdentifier>{07844c25-4f4d-47b8-a505-362bfe00104f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Colliders\Headers">
+      <UniqueIdentifier>{14a08def-633d-4d83-a011-5fbb7cc76200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Colliders\Source">
+      <UniqueIdentifier>{a21ab12c-5071-4db3-9c18-314121cd3083}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SDL_EventBus.cpp">
+      <Filter>Source Files\Events\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL_EventsHandler.cpp">
+      <Filter>Source Files\Events\Source</Filter>
+    </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
+      <Filter>Source Files\Managers\Source</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelLoader.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
+      <Filter>Source Files\Entities\Source</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
+      <Filter>Source Files\Entities\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
+    <ClCompile Include="Events.hpp">
+      <Filter>Source Files\Events</Filter>
     </ClCompile>
     <ClCompile Include="Marker.cpp">
-      <Filter>Source Files\SourceFiles</Filter>
+      <Filter>Source Files\Entities\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CollissionManager.cpp">
+      <Filter>Source Files\Managers\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Dummy.cpp">
+      <Filter>Source Files\Entities\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SDL_EventBus.hpp">
+      <Filter>Source Files\Events\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL_EventHandlerInterface.hpp">
+      <Filter>Source Files\Events\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL_EventsHandler.hpp">
+      <Filter>Source Files\Events\Headers</Filter>
+    </ClInclude>
     <ClInclude Include="GameManager.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
+      <Filter>Source Files\Managers\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Entity.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelLoader.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
+      <Filter>Source Files\Entities\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Player.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
+      <Filter>Source Files\Entities\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Marker.hpp">
-      <Filter>Source Files\HeaderFiles</Filter>
+      <Filter>Source Files\Entities\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CollissionManager.hpp">
+      <Filter>Source Files\Managers\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderInterface.hpp">
+      <Filter>Source Files\Colliders\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Dummy.hpp">
+      <Filter>Source Files\Entities\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
