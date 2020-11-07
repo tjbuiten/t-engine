@@ -11,5 +11,5 @@ public:
 		this->gameManager = gameManager;
 	}
 
-	virtual void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event = nullptr);
+	virtual void handleEvent(Event* event, SDL_Renderer* renderer);
 };

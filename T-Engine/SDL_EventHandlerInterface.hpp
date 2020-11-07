@@ -1,8 +1,9 @@
 #pragma once
 #include "SDL.h"
+#include "Event.hpp"
 
 class SDL_EventHandlerInterface {
 private:
 public:
-	virtual void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event = nullptr) = 0;
+	virtual void handleEvent(Event* event, SDL_Renderer* renderer) = 0;
 };

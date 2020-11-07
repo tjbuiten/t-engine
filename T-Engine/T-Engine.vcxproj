@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="CollissionManager.cpp" />
     <ClCompile Include="Dummy.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -149,12 +150,15 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDL_EventBus.cpp" />
     <ClCompile Include="SDL_EventsHandler.cpp" />
+    <ClCompile Include="Event.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.hpp" />
     <ClInclude Include="ColliderInterface.hpp" />
     <ClInclude Include="CollissionManager.hpp" />
     <ClInclude Include="Dummy.hpp" />
     <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="Event.hpp" />
     <ClInclude Include="GameManager.hpp" />
     <ClInclude Include="Ground.hpp" />
     <ClInclude Include="Marker.hpp" />

@@ -2,7 +2,7 @@
 #include "SDL_image.h"
 #include "SDL_EventHandlerInterface.hpp"
 #include "SDL_EventBus.hpp"
-#include "Events.hpp"
+#include "Event.hpp"
 #include <iostream>
 #include "ColliderInterface.hpp"
 #include "CollissionManager.hpp"
@@ -18,11 +18,13 @@ public:
 
 		eventBus->subscribe(events::update, this);
 		eventBus->subscribe(events::render, this);
+		eventBus->subscribe(events::moveLeft, this);
+		eventBus->subscribe(events::moveRight, this);
 
 		collissionManager->addCollider(this);
 	}
 
-	virtual void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event = nullptr);
+	virtual void handleEvent(Event* event, SDL_Renderer* renderer);
 	virtual void update();
 	virtual void render(SDL_Renderer* renderer);
 

@@ -1,17 +1,21 @@
 #include "Player.hpp"
 
-void Player::handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event) {
-	Entity::handleEvent(eventType, renderer, event);
-
-	switch (eventType) {
+void Player::handleEvent(Event* event, SDL_Renderer* renderer) {
+	switch (event->eventType) {
+	case events::update:
+		this->update();
+		break;
+	case events::render:
+		this->render(renderer);
+		break;
 	case SDL_CONTROLLERBUTTONDOWN:
-		this->handleButtonInput(event);
+		this->handleButtonInput(event->sdl_event);
 		break;
 	case  SDL_CONTROLLERBUTTONUP:
-		this->handleButtonRelease(event);
+		this->handleButtonRelease(event->sdl_event);
 		break;
 	case SDL_JOYAXISMOTION:
-		this->handleJoystickInput(event);
+		this->handleJoystickInput(event->sdl_event);
 		break;
 	}
 }
@@ -57,9 +61,9 @@ void Player::handleJoystickInput(SDL_Event* event) {
 
 	this->direction = 0;
 
-	if (event->caxis.value < -10000 && this->canMoveLeft)
+	if (event->caxis.value < -10000)
 		this->direction = -1;
-	if (event->caxis.value > 10000 && this->canMoveRight)
+	if (event->caxis.value > 10000)
 		this->direction = +1;
 };
 
@@ -116,12 +120,11 @@ void Player::update() {
 		this->hitbox.x = originalX;
 		this->hitbox.w = originalW;
 
-		if (this->direction == -1 && this->canMoveLeft) {
-			this->position.x -= 4;
-		}
-		if (this->direction == 1 && this->canMoveRight) {
-			this->position.x += 4;
-		}
+		if (this->direction == -1 && this->canMoveLeft)
+			//this->eventBus->handleEvent(new Event(events::moveRight, nullptr, 4));
+			if (this->direction == 1 && this->canMoveRight)
+				std::cout << "\n";
+			//this->eventBus->handleEvent(new Event(events::moveLeft, nullptr, 4));
 	}
 
 	this->position.y -= this->velocityY;

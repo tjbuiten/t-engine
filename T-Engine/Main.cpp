@@ -5,8 +5,10 @@
 #include "Player.hpp"
 #include "Dummy.hpp"
 #include "Ground.hpp"
+#include "Background.hpp"
 #include "GameManager.hpp"
 #include "CollissionManager.hpp"
+#include "Event.hpp"
 #include <iostream>
 
 int main(int argc, char* argv[]) {
@@ -18,7 +20,7 @@ int main(int argc, char* argv[]) {
 	GameManager gameManager;
 	gameManager.initialize("T-Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 640, false);
 
-	SDL_EventBus eventBus;
+	SDL_EventBus eventBus = SDL_EventBus(gameManager.renderer);
 	SDL_EventsHandler* eventsHandler = new SDL_EventsHandler(&gameManager);
 	CollissionManager collissionManager;
 
@@ -28,12 +30,26 @@ int main(int argc, char* argv[]) {
 	SDL_Rect* playerPosition = new SDL_Rect();
 	playerPosition->h = 100;
 	playerPosition->w = 64;
-	playerPosition->x = 100;
+	playerPosition->x = 608;
 	playerPosition->y = 100;
 
 	SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(gameManager.renderer, surface);
 
-	Dummy* dummy = gameManager.initializeDummy(&eventBus, &collissionManager);
+	//Dummy* dummy = gameManager.initializeDummy(&eventBus, &collissionManager);
+
+	surface = IMG_Load(".\\Assets\\Sprites\\Background.png");
+
+	SDL_Rect* backgroundPosition = new SDL_Rect();
+	backgroundPosition->h = 640;
+	backgroundPosition->w = 1280;
+	backgroundPosition->x = 0;
+	backgroundPosition->y = 0;
+
+	Background background = Background(
+		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
+		*backgroundPosition,
+		&eventBus
+	);
 
 	surface = IMG_Load(".\\Assets\\Sprites\\Ground.png");
 
@@ -41,7 +57,7 @@ int main(int argc, char* argv[]) {
 	groundPosition->h = 320;
 	groundPosition->w = 640;
 	groundPosition->x = 0;
-	groundPosition->y = 350;
+	groundPosition->y = 352;
 
 	Ground ground = Ground(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
@@ -54,7 +70,7 @@ int main(int argc, char* argv[]) {
 	groundPosition2->h = 320;
 	groundPosition2->w = 640;
 	groundPosition2->x = 640;
-	groundPosition2->y = 350;
+	groundPosition2->y = 352;
 
 	Ground ground2 = Ground(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
@@ -67,11 +83,37 @@ int main(int argc, char* argv[]) {
 	groundPosition3->h = 320;
 	groundPosition3->w = 640;
 	groundPosition3->x = 640;
-	groundPosition3->y = 250;
+	groundPosition3->y = 256;
 
 	Ground ground3 = Ground(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
 		*groundPosition3,
+		&eventBus,
+		&collissionManager
+	);
+
+	SDL_Rect* groundPosition4 = new SDL_Rect();
+	groundPosition4->h = 320;
+	groundPosition4->w = 640;
+	groundPosition4->x = -640;
+	groundPosition4->y = 320;
+
+	Ground ground4 = Ground(
+		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
+		*groundPosition4,
+		&eventBus,
+		&collissionManager
+	);
+
+	SDL_Rect* groundPosition5 = new SDL_Rect();
+	groundPosition5->h = 320;
+	groundPosition5->w = 640;
+	groundPosition5->x = -640;
+	groundPosition5->y = 50;
+
+	Ground ground5 = Ground(
+		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
+		*groundPosition5,
 		&eventBus,
 		&collissionManager
 	);
@@ -112,11 +154,11 @@ int main(int argc, char* argv[]) {
 		SDL_Event event;
 
 		while (SDL_PollEvent(&event)) {
-			eventBus.handleEvent(event.type, gameManager.renderer, &event);
+			eventBus.handleEvent(new Event(event.type, &event));
 		}
 
-		eventBus.handleEvent(events::update, gameManager.renderer);
-		eventBus.handleEvent(events::render, gameManager.renderer);
+		eventBus.handleEvent(new Event(events::update));
+		eventBus.handleEvent(new Event(events::render));
 
 		SDL_RenderPresent(gameManager.renderer);
 

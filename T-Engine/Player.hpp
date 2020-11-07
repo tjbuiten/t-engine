@@ -4,6 +4,7 @@
 
 class Player : public Entity {
 private:
+	SDL_EventBus* eventBus = nullptr;
 	Marker* marker = nullptr;
 	int direction = 0;
 	int lastDirection = 0;
@@ -23,9 +24,10 @@ public:
 		eventBus->subscribe(SDL_JOYAXISMOTION, this);
 
 		this->marker = marker;
+		this->eventBus = eventBus;
 	};
 
-	virtual void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event = nullptr);
+	virtual void handleEvent(Event* event, SDL_Renderer* renderer);
 	virtual void update();
 	virtual void render(SDL_Renderer* renderer);
 	void handleButtonInput(SDL_Event* event);

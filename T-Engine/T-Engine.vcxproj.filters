@@ -81,6 +81,12 @@
     <ClCompile Include="Dummy.cpp">
       <Filter>Source Files\Entities\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files\Events\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDL_EventBus.hpp">
@@ -118,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="Ground.hpp">
       <Filter>Source Files\Entities\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.hpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.hpp">
+      <Filter>Source Files\Events\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

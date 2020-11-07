@@ -1,12 +1,20 @@
 #include "Entity.hpp"
 
-void Entity::handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event) {
-	switch (eventType) {
+void Entity::handleEvent(Event* event, SDL_Renderer* renderer) {
+	switch (event->eventType) {
 	case events::update:
 		this->update();
 		break;
 	case events::render:
 		this->render(renderer);
+		break;
+	case events::moveLeft:
+		this->position.x -= 4;
+		this->hitbox.x -= 4;
+		break;
+	case events::moveRight:
+		this->position.x += 4;
+		this->hitbox.x += 4;
 		break;
 	}
 }

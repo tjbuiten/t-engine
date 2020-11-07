@@ -42,12 +42,12 @@ bool Marker::isVisible() {
 	return this->visible;
 }
 
-void Marker::handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event) {
-	Entity::handleEvent(eventType, renderer, event);
+void Marker::handleEvent(Event* event, SDL_Renderer* renderer) {
+	Entity::handleEvent(event, renderer);
 
-	switch (eventType) {
+	switch (event->eventType) {
 	case SDL_JOYAXISMOTION:
-		this->handleJoystickInput(event);
+		this->handleJoystickInput(event->sdl_event);
 		break;
 	}
 }

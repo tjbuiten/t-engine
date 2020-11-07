@@ -24,6 +24,6 @@ public:
 	void display();
 	void hide();
 	bool isVisible();
-	void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event);
+	void handleEvent(Event* event, SDL_Renderer* renderer);
 	void handleJoystickInput(SDL_Event* event);
 };
