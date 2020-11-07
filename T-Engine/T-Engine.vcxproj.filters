@@ -113,6 +113,12 @@
     <ClInclude Include="Dummy.hpp">
       <Filter>Source Files\Entities\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Taggs.hpp">
+      <Filter>Source Files\Colliders\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.hpp">
+      <Filter>Source Files\Entities\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />

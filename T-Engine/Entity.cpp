@@ -18,9 +18,10 @@ void Entity::render(SDL_Renderer* renderer) {
 }
 
 bool Entity::collides(SDL_Rect* hitbox) {
-	return false;
+	return ((this->hitbox.x > hitbox->x && this->hitbox.x < hitbox->x + hitbox->w) ||
+			(hitbox->x > this->hitbox.x && hitbox->x < this->hitbox.x + this->hitbox.w));
 }
 
-void Entity::handleCollision() {
+void Entity::handleCollision(ColliderInterface* collider) {
 
 }

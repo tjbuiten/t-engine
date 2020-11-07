@@ -13,7 +13,7 @@ void GameManager::initialize(const char* title, int xpos, int ypos, int width, i
 	if (!this->renderer)
 		return;
 
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(renderer, 125, 145, 255, 255);
 	SDL_RenderClear(renderer);
 
 	this->running = true;
@@ -42,4 +42,22 @@ void GameManager::update() {
 
 void GameManager::render() {
 
+}
+
+Dummy* GameManager::initializeDummy(SDL_EventBus* eventBus, CollissionManager* collissionManager) {
+	SDL_Rect* dummyPosition = new SDL_Rect();
+	dummyPosition->h = 64;
+	dummyPosition->w = 64;
+	dummyPosition->x = 500;
+	dummyPosition->y = 200;
+
+	SDL_Surface* surface = IMG_Load(".\\Assets\\Sprites\\IsoTestPlayer.png");
+	Dummy* dummy = new Dummy(
+		SDL_CreateTextureFromSurface(this->renderer, surface),
+		*dummyPosition,
+		eventBus,
+		collissionManager
+	);
+
+	return dummy;
 }

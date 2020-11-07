@@ -14,3 +14,10 @@ void SDL_EventBus::handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event*
 	for (SDL_EventHandlerInterface* eventHandler : it->second)
 		eventHandler->handleEvent(eventType, renderer, event);
 }
+
+void SDL_EventBus::unsubscribe(int eventType, SDL_EventHandlerInterface* eventHandler) {
+	auto it = std::find(this->eventHandlers[eventType].begin(), this->eventHandlers[eventType].end(), eventHandler);
+
+	if (it != this->eventHandlers[eventType].end())
+		this->eventHandlers[eventType].erase(it);
+}

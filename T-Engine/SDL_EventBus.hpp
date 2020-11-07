@@ -11,4 +11,6 @@ public:
 	void subscribe(int, SDL_EventHandlerInterface*);
 
 	void handleEvent(int eventType, SDL_Renderer* renderer, SDL_Event* event = nullptr);
+
+	void unsubscribe(int, SDL_EventHandlerInterface*);
 };

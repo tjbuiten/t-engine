@@ -8,6 +8,9 @@ private:
 	int direction = 0;
 	int lastDirection = 0;
 	int velocityY = 0;
+	int groundHeight = 522;
+	bool canMoveLeft = true;
+	bool canMoveRight = true;
 	CollissionManager* collissionManager;
 
 	bool shouldSpriteFlip();
@@ -28,4 +31,5 @@ public:
 	void handleButtonInput(SDL_Event* event);
 	void handleButtonRelease(SDL_Event* event);
 	void handleJoystickInput(SDL_Event* event);
+	virtual void handleCollision(ColliderInterface* collider);
 };

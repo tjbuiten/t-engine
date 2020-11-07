@@ -8,5 +8,6 @@ private:
 public:
 	void addCollider(ColliderInterface* collider);
 	void removeCollider(ColliderInterface* collider);
-	void checkCollissions();
+	void checkCollissions(ColliderInterface* colliderOne);
+	ColliderInterface* getFirstCollission(ColliderInterface* colliderOne, taggs tag);
 };

@@ -7,7 +7,7 @@
 #include "ColliderInterface.hpp"
 #include "CollissionManager.hpp"
 
-class Entity : public SDL_EventHandlerInterface, ColliderInterface {
+class Entity : public SDL_EventHandlerInterface, public ColliderInterface {
 public:
 	SDL_Texture* texture;
 	SDL_Rect position;
@@ -27,5 +27,5 @@ public:
 	virtual void render(SDL_Renderer* renderer);
 
 	virtual bool collides(SDL_Rect* hitbox);
-	virtual void handleCollision();
+	virtual void handleCollision(ColliderInterface* collider);
 };

@@ -156,11 +156,13 @@
     <ClInclude Include="Dummy.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="GameManager.hpp" />
+    <ClInclude Include="Ground.hpp" />
     <ClInclude Include="Marker.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SDL_EventBus.hpp" />
     <ClInclude Include="SDL_EventHandlerInterface.hpp" />
     <ClInclude Include="SDL_EventsHandler.hpp" />
+    <ClInclude Include="Taggs.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />

@@ -3,6 +3,8 @@
 #include "SDL_EventBus.hpp"
 #include "SDL_EventsHandler.hpp"
 #include "Player.hpp"
+#include "Dummy.hpp"
+#include "Ground.hpp"
 #include "GameManager.hpp"
 #include "CollissionManager.hpp"
 #include <iostream>
@@ -30,6 +32,49 @@ int main(int argc, char* argv[]) {
 	playerPosition->y = 100;
 
 	SDL_Texture* playerTexture = SDL_CreateTextureFromSurface(gameManager.renderer, surface);
+
+	Dummy* dummy = gameManager.initializeDummy(&eventBus, &collissionManager);
+
+	surface = IMG_Load(".\\Assets\\Sprites\\Ground.png");
+
+	SDL_Rect* groundPosition = new SDL_Rect();
+	groundPosition->h = 320;
+	groundPosition->w = 640;
+	groundPosition->x = 0;
+	groundPosition->y = 350;
+
+	Ground ground = Ground(
+		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
+		*groundPosition,
+		&eventBus,
+		&collissionManager
+	);
+
+	SDL_Rect* groundPosition2 = new SDL_Rect();
+	groundPosition2->h = 320;
+	groundPosition2->w = 640;
+	groundPosition2->x = 640;
+	groundPosition2->y = 350;
+
+	Ground ground2 = Ground(
+		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
+		*groundPosition2,
+		&eventBus,
+		&collissionManager
+	);
+
+	SDL_Rect* groundPosition3 = new SDL_Rect();
+	groundPosition3->h = 320;
+	groundPosition3->w = 640;
+	groundPosition3->x = 640;
+	groundPosition3->y = 250;
+
+	Ground ground3 = Ground(
+		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
+		*groundPosition3,
+		&eventBus,
+		&collissionManager
+	);
 
 	surface = IMG_Load(".\\Assets\\Sprites\\Marker.png");
 
