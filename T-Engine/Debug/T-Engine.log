@@ -1,4 +1,2 @@
 ﻿  Player.cpp
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\T-Engine\Player.cpp(75): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-Main.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Player::handleEvent(int,struct SDL_Renderer *,union SDL_Event *)" (?handleEvent@Player@@UAEXHPAUSDL_Renderer@@PATSDL_Event@@@Z)
-C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\Debug\T-Engine.exe : fatal error LNK1120: 1 unresolved externals
+  T-Engine.vcxproj -> C:\Users\TB\Documents\Hobby\GameDesign\T-Engine\Debug\T-Engine.exe

@@ -24,15 +24,21 @@ void CollissionManager::removeCollider(ColliderInterface* collider) {
 }
 
 ColliderInterface* CollissionManager::getFirstCollission(ColliderInterface* colliderOne, taggs tag = taggs::standard) {
-	int closestColliderDistance = INFINITY;
+	int closestColliderDistance = 9999;
 	ColliderInterface* closestCollider = nullptr;
 
 	for (ColliderInterface* colliderTwo : this->colliders) {
-		if (colliderOne != colliderTwo && colliderTwo->tagg == tag) {
-			int colliderDistance = abs(colliderOne->hitbox.x - colliderTwo->hitbox.x) + abs(colliderOne->hitbox.y - colliderTwo->hitbox.y);
-			if (colliderOne->collides(&colliderTwo->hitbox) && (
-				closestCollider == nullptr ||
-				colliderDistance < closestColliderDistance)) {
+		if (colliderOne != colliderTwo && colliderTwo->isTypeOf(tag) && colliderOne->collides(&colliderTwo->hitbox)) {
+			int distanceLeft = (abs(colliderOne->hitbox.x - colliderTwo->hitbox.x) < abs(colliderOne->hitbox.x - (colliderTwo->hitbox.x + colliderTwo->hitbox.w))) ?
+				abs(colliderOne->hitbox.x - colliderTwo->hitbox.x) : abs(colliderOne->hitbox.x - (colliderTwo->hitbox.x + colliderTwo->hitbox.w));
+			int distanceRight = (abs((colliderOne->hitbox.x + colliderOne->hitbox.w) - colliderTwo->hitbox.x) < abs((colliderOne->hitbox.x + colliderOne->hitbox.w) - (colliderTwo->hitbox.x + colliderTwo->hitbox.w))) ?
+				abs((colliderOne->hitbox.x + colliderOne->hitbox.w) - colliderTwo->hitbox.x) : abs((colliderOne->hitbox.x + colliderOne->hitbox.w) - (colliderTwo->hitbox.x + colliderTwo->hitbox.w));
+
+			int distanceX = (distanceLeft < distanceRight) ? distanceLeft : distanceRight;
+			
+			int colliderDistance = abs(distanceX) + abs(colliderOne->hitbox.y - colliderTwo->hitbox.y);
+
+			if (colliderDistance < closestColliderDistance) {
 				closestColliderDistance = colliderDistance;
 				closestCollider = colliderTwo;
 			}

@@ -10,9 +10,8 @@ private:
 	int lastDirection = 0;
 	int velocityY = 0;
 	int groundHeight = 522;
-	bool canMoveLeft = true;
-	bool canMoveRight = true;
 	CollissionManager* collissionManager;
+	bool canDash = false;
 
 	bool shouldSpriteFlip();
 public:
@@ -25,6 +24,11 @@ public:
 
 		this->marker = marker;
 		this->eventBus = eventBus;
+
+		this->hitbox.x = this->position.x;
+		this->hitbox.y = this->position.y;
+		this->hitbox.h = this->position.h;
+		this->hitbox.w = this->position.w;
 	};
 
 	virtual void handleEvent(Event* event, SDL_Renderer* renderer);

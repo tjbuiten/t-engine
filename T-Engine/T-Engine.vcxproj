@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="ColliderInterface.cpp" />
     <ClCompile Include="CollissionManager.cpp" />
     <ClCompile Include="Dummy.cpp" />
     <ClCompile Include="Entity.cpp" />

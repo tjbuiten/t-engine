@@ -4,11 +4,10 @@ void Marker::update() {
 	if (!visible)
 		return;
 
-	if (this->verticalDirection != 0)
-		this->position.y = (this->verticalDirection < 0) ? this->position.y - 4 : this->position.y + 4;
+	float angle = atan2(verticalDirection - this->originY, horizontalDirection - this->originX);
 
-	if (this->horizontalDirection != 0)
-		this->position.x = (this->horizontalDirection < 0) ? this->position.x - 4 : this->position.x + 4;
+	this->position.x = originX + cos(angle) * 200;
+	this->position.y = originY + sin(angle) * 200;
 }
 
 void Marker::render(SDL_Renderer* renderer) {
@@ -53,21 +52,9 @@ void Marker::handleEvent(Event* event, SDL_Renderer* renderer) {
 }
 
 void Marker::handleJoystickInput(SDL_Event* event) {
-	if (event->caxis.axis == SDL_CONTROLLER_AXIS_LEFTY) {
-		this->verticalDirection = 0;
+	if (event->caxis.axis == SDL_CONTROLLER_AXIS_LEFTY)
+		this->verticalDirection = event->caxis.value;
 
-		if (event->caxis.value < -10000)
-			this->verticalDirection = -1;
-		if (event->caxis.value > 10000)
-			this->verticalDirection = 1;
-	}
-
-	if (event->caxis.axis == SDL_CONTROLLER_AXIS_LEFTX) {
-		this->horizontalDirection = 0;
-
-		if (event->caxis.value < -10000)
-			this->horizontalDirection = -1;
-		if (event->caxis.value > 10000)
-			this->horizontalDirection = 1;
-	}
+	if (event->caxis.axis == SDL_CONTROLLER_AXIS_LEFTX)
+		this->horizontalDirection = event->caxis.value;
 };

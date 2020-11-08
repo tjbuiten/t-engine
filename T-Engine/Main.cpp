@@ -59,12 +59,21 @@ int main(int argc, char* argv[]) {
 	groundPosition->x = 0;
 	groundPosition->y = 352;
 
+	SDL_Rect* groundCollider = new SDL_Rect();
+	groundCollider->h = 128;
+	groundCollider->w = groundPosition->w;
+	groundCollider->x = groundPosition->x;
+	groundCollider->y = groundPosition->y + 200;
+
 	Ground ground = Ground(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
 		*groundPosition,
 		&eventBus,
-		&collissionManager
+		&collissionManager,
+		*groundCollider
 	);
+	ground.addTagg(taggs::ground);
+	ground.addTagg(taggs::wall);
 
 	SDL_Rect* groundPosition2 = new SDL_Rect();
 	groundPosition2->h = 320;
@@ -72,12 +81,22 @@ int main(int argc, char* argv[]) {
 	groundPosition2->x = 640;
 	groundPosition2->y = 352;
 
+	SDL_Rect* groundCollider2 = new SDL_Rect();
+	groundCollider2->h = 128;
+	groundCollider2->w = groundPosition2->w;
+	groundCollider2->x = groundPosition2->x;
+	groundCollider2->y = groundPosition2->y + 200;
+
+
 	Ground ground2 = Ground(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
 		*groundPosition2,
 		&eventBus,
-		&collissionManager
+		&collissionManager,
+		*groundCollider2
 	);
+	ground2.addTagg(taggs::ground);
+	ground2.addTagg(taggs::wall);
 
 	SDL_Rect* groundPosition3 = new SDL_Rect();
 	groundPosition3->h = 320;
@@ -85,38 +104,105 @@ int main(int argc, char* argv[]) {
 	groundPosition3->x = 640;
 	groundPosition3->y = 256;
 
+	SDL_Rect* groundCollider3 = new SDL_Rect();
+	groundCollider3->h = 128;
+	groundCollider3->w = groundPosition3->w;
+	groundCollider3->x = groundPosition3->x;
+	groundCollider3->y = groundPosition3->y + 200;
+
 	Ground ground3 = Ground(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
 		*groundPosition3,
 		&eventBus,
-		&collissionManager
+		&collissionManager,
+		*groundCollider3
 	);
+	ground3.addTagg(taggs::ground);
+	ground3.addTagg(taggs::wall);
 
 	SDL_Rect* groundPosition4 = new SDL_Rect();
 	groundPosition4->h = 320;
 	groundPosition4->w = 640;
 	groundPosition4->x = -640;
-	groundPosition4->y = 320;
+	groundPosition4->y = 160;
+
+	SDL_Rect* groundCollider4 = new SDL_Rect();
+	groundCollider4->h = 16;
+	groundCollider4->w = groundPosition4->w;
+	groundCollider4->x = groundPosition4->x;
+	groundCollider4->y = groundPosition4->y + 200;
 
 	Ground ground4 = Ground(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
 		*groundPosition4,
 		&eventBus,
-		&collissionManager
+		&collissionManager,
+		*groundCollider4
 	);
+
+	SDL_Rect* groundPosition7 = new SDL_Rect();
+	groundPosition7->h = 320;
+	groundPosition7->w = 640;
+	groundPosition7->x = -640;
+	groundPosition7->y = 64;
+
+	SDL_Rect* groundCollider7 = new SDL_Rect();
+	groundCollider7->h = 16;
+	groundCollider7->w = groundPosition7->w;
+	groundCollider7->x = groundPosition7->x;
+	groundCollider7->y = groundPosition7->y + 200;
+
+	Ground ground7 = Ground(
+		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
+		*groundPosition7,
+		&eventBus,
+		&collissionManager,
+		*groundCollider7
+	);
+	ground7.addTagg(taggs::ground);
 
 	SDL_Rect* groundPosition5 = new SDL_Rect();
 	groundPosition5->h = 320;
 	groundPosition5->w = 640;
 	groundPosition5->x = -640;
-	groundPosition5->y = 50;
+	groundPosition5->y = 352;
+
+	SDL_Rect* groundCollider5 = new SDL_Rect();
+	groundCollider5->h = 128;
+	groundCollider5->w = groundPosition5->w;
+	groundCollider5->x = groundPosition5->x;
+	groundCollider5->y = groundPosition5->y + 200;
 
 	Ground ground5 = Ground(
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
 		*groundPosition5,
 		&eventBus,
-		&collissionManager
+		&collissionManager,
+		*groundCollider5
 	);
+	ground5.addTagg(taggs::wall);
+
+	SDL_Rect* groundPosition6 = new SDL_Rect();
+	groundPosition6->h = 320;
+	groundPosition6->w = 640;
+	groundPosition6->x = -640;
+	groundPosition6->y = 256;
+
+	SDL_Rect* groundCollider6 = new SDL_Rect();
+	groundCollider6->h = 128;
+	groundCollider6->w = groundPosition6->w;
+	groundCollider6->x = groundPosition6->x;
+	groundCollider6->y = groundPosition6->y + 200;
+
+	Ground ground6 = Ground(
+		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
+		*groundPosition6,
+		&eventBus,
+		&collissionManager,
+		*groundCollider6
+	);
+	ground6.addTagg(taggs::ground);
+	ground6.addTagg(taggs::wall);
 
 	surface = IMG_Load(".\\Assets\\Sprites\\Marker.png");
 
@@ -130,7 +216,9 @@ int main(int argc, char* argv[]) {
 		SDL_CreateTextureFromSurface(gameManager.renderer, surface),
 		*markerPosition,
 		&eventBus,
-		&collissionManager
+		&collissionManager,
+		0,
+		0
 	);
 
 	Player player = Player(

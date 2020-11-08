@@ -87,6 +87,9 @@
     <ClCompile Include="Event.cpp">
       <Filter>Source Files\Events\Source</Filter>
     </ClCompile>
+    <ClCompile Include="ColliderInterface.cpp">
+      <Filter>Source Files\Colliders\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SDL_EventBus.hpp">
